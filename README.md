@@ -21,6 +21,8 @@ node dist/cli.js check examples/duplicate-denial.json --checkpoint after-tools -
 
 Both examples are synthetic. They execute no tool and require no API key. Dependencies are needed for development only; built code has no runtime dependencies, telemetry, HTTP calls, or payload upload.
 
+Want a copy-paste storage regression test? Follow the [five-minute save/reload guide](examples/save-reload-regression.md) using the released archive, a valid control, and a deliberately lossy mapping.
+
 ## Library
 
 ```ts
