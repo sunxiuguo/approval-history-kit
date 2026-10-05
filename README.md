@@ -4,7 +4,7 @@ Catch broken approve/deny histories in your persistence tests before resuming an
 
 An offline TypeScript library and CLI for a narrow question: **did my application preserve the AI SDK approval lifecycle?** It finds missing references, conflicting decisions, duplicate terminal results, and approval metadata lost in a declared lossless save/reload round trip.
 
-**Early, unreleased project.** No npm package or release tag is published. Use the source checkout. The adapter is pinned to **ai@7.0.127**, with original fixtures checked against its exported `ModelMessage` type. This is not a general conversation validator, a provider-acceptance guarantee, or an authorization system.
+**Early v0.1 project.** Use a source checkout, or download a built archive from [GitHub Releases](https://github.com/sunxiuguo/approval-history-kit/releases) when available. This package is not published to npm. The adapter is pinned to **ai@7.0.127**, with original fixtures checked against its exported `ModelMessage` type. This is not a general conversation validator, a provider-acceptance guarantee, or an authorization system.
 
 ## Try the broken history beside its control
 
@@ -36,7 +36,14 @@ const roundTrip = compareApprovalState(history, restored, {
 });
 ```
 
-The import above works after installing a locally built archive (`npm pack`). It is not an instruction to install a published npm package.
+The import above works after installing a locally built archive (`npm pack`) or a downloaded GitHub release asset. It is not an instruction to install a published npm package.
+
+To try a downloaded archive in a separate directory without fetching runtime dependencies:
+
+```sh
+npm install --offline --ignore-scripts --no-audit --no-fund ./approval-history-kit-0.1.0.tgz
+node node_modules/approval-history-kit/dist/cli.js check node_modules/approval-history-kit/examples/good-denial.json --checkpoint after-tools
+```
 
 Inputs are read-only plain JSON. Accept a `ModelMessage[]` or this envelope:
 
@@ -128,4 +135,4 @@ Pinned SDK tag: [`ai@7.0.127`](https://github.com/vercel/ai/tree/ai%407.0.127), 
 
 No SDK implementation is vendored. Original code is MIT; development dependencies retain their own licenses, including [AI SDK's Apache-2.0 license](https://github.com/vercel/ai/blob/ai%407.0.127/LICENSE).
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for reproductions and scope. The first release is gated on independent checkpoint/false-positive review and passing CI. No automatic package publishing is configured.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for reproductions and scope. Releases are gated on independent checkpoint/false-positive review and passing CI. No automatic package publishing is configured.
