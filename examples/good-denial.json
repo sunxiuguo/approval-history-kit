@@ -1,0 +1,40 @@
+{
+  "format": "approval-history-kit",
+  "version": 1,
+  "messages": [
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool-call",
+          "toolCallId": "synthetic-call-a",
+          "toolName": "synthetic_lookup",
+          "input": { "record": "example-only" }
+        },
+        {
+          "type": "tool-approval-request",
+          "approvalId": "synthetic-approval-a",
+          "toolCallId": "synthetic-call-a",
+          "reason": "Synthetic approval request for this offline example."
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "content": [
+        {
+          "type": "tool-approval-response",
+          "approvalId": "synthetic-approval-a",
+          "approved": false,
+          "reason": "Synthetic denial for this offline example."
+        },
+        {
+          "type": "tool-result",
+          "toolCallId": "synthetic-call-a",
+          "toolName": "synthetic_lookup",
+          "output": { "type": "execution-denied" }
+        }
+      ]
+    }
+  ]
+}

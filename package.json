@@ -1,0 +1,21 @@
+{
+  "name": "approval-history-kit",
+  "version": "0.1.0",
+  "description": "Offline approval-history checks for AI SDK persistence tests",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": {"node": ">=22"},
+  "bin": {"approval-history-kit": "./dist/cli.js"},
+  "exports": {".": {"types": "./dist/index.d.ts", "import": "./dist/index.js"}},
+  "files": ["dist", "README.md", "LICENSE", "examples"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.test.json --noEmit",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "smoke": "node scripts/pack-smoke.mjs",
+    "check": "npm run typecheck && npm test && npm run smoke"
+  },
+  "devDependencies": {"ai": "7.0.127", "typescript": "5.9.3", "@types/node": "22.18.6"},
+  "repository": {"type": "git", "url": "https://github.com/sunxiuguo/approval-history-kit.git"}
+}
