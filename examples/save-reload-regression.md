@@ -9,6 +9,17 @@ supported **ai@7.0.127 JSON `ModelMessage`** shape. You need Node.js 22 or 24 an
 POSIX shell. No AI SDK installation, provider, API key, or tool execution is needed.
 After downloading the archive, the demo works offline.
 
+If your application stores `UIMessage`, this example does not directly accept
+those snapshots. Follow the AI SDK's [message-persistence guidance](https://github.com/vercel/ai/blob/eb77f09e3c06c28e860d92e0de941b143c2eecec/content/docs/04-ai-sdk-ui/03-chatbot-message-persistence.mdx#L318-L390)
+for native validation and conversion to `ModelMessage`.
+
+Conversion is a projection and can [intentionally omit unresolved approval
+requests](https://github.com/vercel/ai/blob/eb77f09e3c06c28e860d92e0de941b143c2eecec/packages/ai/src/ui/convert-to-model-messages.ts#L76-L109).
+A clean check of converted messages therefore does not prove a lossless
+`UIMessage` storage round trip. Keep a full-JSON equality assertion around
+save/load when storage must preserve the complete `UIMessage` JSON. This kit
+checks only its supported approval projection.
+
 ## 1. Install the release archive
 
 Create a fresh working directory. Download `approval-history-kit-0.1.0.tgz` from
