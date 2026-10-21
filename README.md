@@ -1,5 +1,7 @@
 # approval-history-kit
 
+![Did approval state survive storage? Inspect explicit checkpoints. Compare declared lossless round trips. Illustrative workflow, not a screenshot. History integrity is not authorization.](docs/workflow.svg)
+
 Catch broken approve/deny histories in your persistence tests before resuming an agent.
 
 An offline TypeScript library and CLI for a narrow question: **did my application preserve the AI SDK approval lifecycle?** It finds missing references, conflicting decisions, duplicate terminal results, and approval metadata lost in a declared lossless save/reload round trip.
@@ -138,3 +140,4 @@ Pinned SDK tag: [`ai@7.0.127`](https://github.com/vercel/ai/tree/ai%407.0.127), 
 No SDK implementation is vendored. Original code is MIT; development dependencies retain their own licenses, including [AI SDK's Apache-2.0 license](https://github.com/vercel/ai/blob/ai%407.0.127/LICENSE).
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for reproductions and scope. Releases are gated on independent checkpoint/false-positive review and passing CI. No automatic package publishing is configured.
+
