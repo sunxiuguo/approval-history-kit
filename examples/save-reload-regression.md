@@ -20,6 +20,9 @@ A clean check of converted messages therefore does not prove a lossless
 save/load when storage must preserve the complete `UIMessage` JSON. This kit
 checks only its supported approval projection.
 
+For a runnable source-checkout demonstration using the pinned SDK validator and
+converter, see [UI persistence: schema validity is not lossless storage](ui-save-reload.md).
+
 ## 1. Install the release archive
 
 Create a fresh working directory. Download `approval-history-kit-0.1.0.tgz` from

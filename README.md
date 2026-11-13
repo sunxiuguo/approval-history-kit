@@ -25,6 +25,8 @@ Both examples are synthetic. They execute no tool and require no API key. Depend
 
 Want a copy-paste storage regression test? Follow the [five-minute save/reload guide](examples/save-reload-regression.md) using the released archive, a valid control, and a deliberately lossy mapping.
 
+Already storing UI messages? Run the [pinned SDK UI save/reload example](examples/ui-save-reload.md) to compare native schema validation with lossless approval checks.
+
 ## Library
 
 ```ts
