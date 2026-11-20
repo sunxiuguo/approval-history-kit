@@ -6,9 +6,40 @@ Catch broken approve/deny histories in your persistence tests before resuming an
 
 An offline TypeScript library and CLI for a narrow question: **did my application preserve the AI SDK approval lifecycle?** It finds missing references, conflicting decisions, duplicate terminal results, and approval metadata lost in a declared lossless save/reload round trip.
 
-**Early v0.1 project.** Use a source checkout, or download a built archive from [GitHub Releases](https://github.com/sunxiuguo/approval-history-kit/releases) when available. This package is not published to npm. The adapter is pinned to **ai@7.0.127**, with original fixtures checked against its exported `ModelMessage` type. This is not a general conversation validator, a provider-acceptance guarantee, or an authorization system.
+**Early v0.1 project.** Start with the built CLI archive in [GitHub release v0.1.0](https://github.com/sunxiuguo/approval-history-kit/releases/tag/v0.1.0), or build from a source checkout. This package is not published to npm. The adapter is pinned to **ai@7.0.127**, with original fixtures checked against its exported `ModelMessage` type. This is not a general conversation validator, a provider-acceptance guarantee, or an authorization system.
 
 ## Try the broken history beside its control
+
+### Run the release without installing
+
+Use Node.js 22 or 24 and a POSIX shell with `tar`. Download
+`approval-history-kit-0.1.0.tgz` from [release v0.1.0](https://github.com/sunxiuguo/approval-history-kit/releases/tag/v0.1.0)
+into a fresh directory, then verify and extract it there:
+
+```sh
+node --input-type=module -e '
+import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+const filename = "approval-history-kit-0.1.0.tgz";
+assert.equal(createHash("sha256").update(readFileSync(filename)).digest("hex"),
+  "21bd00f81e531f2e187c8dc0a5d3b3669e886d028b8837fad6f0e78b74788435");' &&
+tar -xzf approval-history-kit-0.1.0.tgz
+```
+
+Run the two fixtures separately. The second deliberately exits 1:
+
+```sh
+node package/dist/cli.js check package/examples/good-denial.json --checkpoint after-tools --format json
+# exit 0, status "clean"
+node package/dist/cli.js check package/examples/duplicate-denial.json --checkpoint after-tools --format json
+# exit 1, DUPLICATE_TERMINAL_RESULT
+```
+
+This path needs no npm install, SDK, provider key or network after the download.
+For a library import in your own project, use the offline install below.
+
+### Build from a source checkout
 
 Node.js 22 or 24:
 
